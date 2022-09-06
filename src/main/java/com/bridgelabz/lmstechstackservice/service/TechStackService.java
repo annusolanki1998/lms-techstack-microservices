@@ -14,6 +14,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Purpose: Creating service for techStack
+ *
+ * @author: Annu Kumari
+ * @Param: business logic is present here
+ * Version: 1.0
+ */
+
 @Service
 public class TechStackService implements ITechStackService {
     @Autowired
@@ -22,14 +30,19 @@ public class TechStackService implements ITechStackService {
     TokenUtil tokenUtil;
     @Autowired
     MailService mailService;
-
     @Autowired
     RestTemplate restTemplate;
 
+    /**
+     * Purpose: Creating method to add techStack details
+     *
+     * @author: Annu Kumari
+     * @Param: techStackDto
+     */
 
     @Override
     public ResponseUtil addTechStack(TechStackDTO techStackDTO, String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8081/admin/validate/" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://EUREKA-ADMIN-CLIENT:8081/admin/validate/" + token, Boolean.class);
         if (isUserPresent) {
             TechStackModel techStackModel = new TechStackModel(techStackDTO);
             techStackModel.setCreationTimeStamp(LocalDateTime.now());
@@ -42,9 +55,16 @@ public class TechStackService implements ITechStackService {
         throw new TechStackNotFoundException(400, "Token is wrong");
     }
 
+    /**
+     * Purpose: Creating method to update existing techStack details
+     *
+     * @author: Annu Kumari
+     * @Param: techStackDto, id and token
+     */
+
     @Override
     public ResponseUtil updateTechStack(TechStackDTO techStackDTO, String token, Long id) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8081/admin/validate/" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://EUREKA-ADMIN-CLIENT:8081/admin/validate/" + token, Boolean.class);
         if (isUserPresent) {
             Optional<TechStackModel> isTechStackPresent = techStackRepository.findById(id);
             if (isTechStackPresent.isPresent()) {
@@ -65,10 +85,17 @@ public class TechStackService implements ITechStackService {
         throw new TechStackNotFoundException(400, "Token is wrong");
     }
 
+    /**
+     * Purpose: Creating method to get techStack details
+     *
+     * @author: Annu Kumari
+     * @Param: token
+     */
+
 
     @Override
     public List<TechStackModel> getTechStacks(String token) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8081/admin/validate/" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://EUREKA-ADMIN-CLIENT:8081/admin/validate/" + token, Boolean.class);
         if (isUserPresent) {
             List<TechStackModel> isTechStackPresent = techStackRepository.findAll();
             if (isTechStackPresent.size() > 0) {
@@ -80,10 +107,17 @@ public class TechStackService implements ITechStackService {
         throw new TechStackNotFoundException(400, "Token is wrong");
     }
 
+    /**
+     * Purpose: Creating method to delete existing techStack details
+     *
+     * @author: Annu Kumari
+     * @Param: id and token
+     */
+
 
     @Override
     public ResponseUtil deleteTechStack(String token, Long id) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8081/admin/validate/" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://EUREKA-ADMIN-CLIENT:8081/admin/validate/" + token, Boolean.class);
         if (isUserPresent) {
             Optional<TechStackModel> isTechStackPresent = techStackRepository.findById(id);
             if (isTechStackPresent.isPresent()) {
@@ -97,10 +131,17 @@ public class TechStackService implements ITechStackService {
         throw new TechStackNotFoundException(400, "Token is wrong");
     }
 
+    /**
+     * Purpose: Creating method to get techStack details
+     *
+     * @author: Annu Kumari
+     * @Param: id and token
+     */
+
 
     @Override
     public ResponseUtil getTechStack(String token, Long id) {
-        boolean isUserPresent = restTemplate.getForObject("http://localhost:8081/admin/validate/" + token, Boolean.class);
+        boolean isUserPresent = restTemplate.getForObject("http://EUREKA-ADMIN-CLIENT:8081/admin/validate/" + token, Boolean.class);
         if (isUserPresent) {
             Optional<TechStackModel> isTechStackPresent = techStackRepository.findById(id);
             if (isTechStackPresent.isPresent()) {

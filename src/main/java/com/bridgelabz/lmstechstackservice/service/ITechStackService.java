@@ -6,6 +6,13 @@ import com.bridgelabz.lmstechstackservice.util.ResponseUtil;
 
 import java.util.List;
 
+/**
+ * Purpose: Creating Interface for techStack service
+ *
+ * @author: Annu Kumari
+ * @Param: All service methods
+ * Version: 1.0
+ */
 public interface ITechStackService {
 
     ResponseUtil addTechStack(TechStackDTO techStackDTO, String token);

@@ -18,10 +18,21 @@ public class TechStackController {
     @Autowired
     ITechStackService techStackService;
 
+    /*
+     * Purpose: Print welcome message
+     * @author: Annu kumari
+     * */
+
     @GetMapping("/welcome")
     public String welcomeMessage() {
         return "Welcome to LMS Spring application project";
     }
+
+    /*
+     * Purpose: Create techStack details
+     * @author: Annu Kumari
+     * @Param: techStackDTO and token
+     * */
 
     @PostMapping("/addtechstack")
     public ResponseEntity<ResponseUtil> addTechStack(@Valid @RequestBody TechStackDTO techStackDTO,
@@ -29,6 +40,12 @@ public class TechStackController {
         ResponseUtil responseUtil = techStackService.addTechStack(techStackDTO, token);
         return new ResponseEntity<>(responseUtil, HttpStatus.OK);
     }
+
+    /*
+     * Purpose: Update existing techStack details by using id
+     * @author: Annu Kumari
+     * @Param: id,techStackDTO,and token
+     * */
 
 
     @PutMapping("/updatetechstack/{id}")
@@ -39,12 +56,24 @@ public class TechStackController {
         return new ResponseEntity<>(responseUtil, HttpStatus.OK);
     }
 
+    /*
+     * Purpose: Retrieve all techStack details
+     * @author: Annu Kumari
+     * @Param: token
+     * */
+
     @GetMapping("/gettechstacks")
     public ResponseEntity<List<?>> getTechStacks(@RequestHeader String token) {
         List<TechStackModel> responseUtil = techStackService.getTechStacks(token);
         return new ResponseEntity<>(responseUtil, HttpStatus.OK);
 
     }
+
+    /*
+     * Purpose: Delete existing techStack details by using id
+     * @author: Annu Kumari
+     * @Param: id and token
+     * */
 
 
     @DeleteMapping("deletetechstack/{id}")
@@ -54,7 +83,11 @@ public class TechStackController {
         return new ResponseEntity<>(responseUtil, HttpStatus.OK);
     }
 
-
+    /*
+     * Purpose: Retrieve existing techStack details by using id
+     * @author: Annu Kumari
+     * @Param: id and token
+     * */
     @GetMapping("gettechstack/{id}")
     public ResponseEntity<ResponseUtil> getTechStack(@PathVariable Long id,
                                                      @RequestHeader String token) {

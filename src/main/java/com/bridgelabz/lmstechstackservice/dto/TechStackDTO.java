@@ -5,6 +5,12 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/*
+ * Purpose : TechStackDTO are used to create and update techStack details
+ * Version : 1.0
+ * @author : Annu Kumari
+ * */
+
 @Data
 public class TechStackDTO {
     @NotNull(message = "Image path should not be empty ")
